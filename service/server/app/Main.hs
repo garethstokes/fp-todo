@@ -21,7 +21,10 @@ import System.IO
 
 import Todo.Util.ServiceEnvironment
 import Todo.Util.Logger (logger)
-import Todo.Postgres.TodoItem.Service (postgresTodoItemService)
+import Todo.Postgres.TodoItem.Service 
+  ( initPostgresPool
+  , postgresTodoItemService
+  )
 
 import qualified Todo.Server as TodoServer
 
@@ -42,6 +45,9 @@ main = do
       Right y ->
         pure y
 
+  liftIO . putStrLn $ "todo-server: initiating database connection"
+  pool <- initPostgresPool (connectionString cse)
+
   putStrLn
     $ "todo-server: starting a web server on port "
     <> show (servicePort cse)
@@ -56,5 +62,6 @@ main = do
 
     runSettings 
       settings 
-      $ TodoServer.app postgresTodoItemService
+      $ TodoServer.app 
+      $ postgresTodoItemService pool
     putStrLn "todo-server: stopping web server"

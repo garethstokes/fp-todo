@@ -3,6 +3,7 @@
 
 module Todo.Postgres.TodoItem.Service 
   ( postgresTodoItemService
+  , initPostgresPool
   )
 where
 
@@ -29,8 +30,8 @@ import Traction.QQ (sql)
 import qualified Traction.Control as Traction
 import qualified Traction.Sql as Traction
 
-newPool :: ByteString -> IO Traction.DbPool 
-newPool = Traction.newPool
+initPostgresPool :: ByteString -> IO Traction.DbPool 
+initPostgresPool = Traction.newPool
 
 instance FromField TodoItem.Id where
   fromField f b = TodoItem.Id <$> fromField f b
