@@ -1,0 +1,57 @@
+cabal-version:      2.4
+name:               todo-server
+version:            0.1.0.0
+
+library
+    exposed-modules:    Todo.Server
+                      , Todo.Util.ServiceEnvironment
+                      , Todo.Util.Logger
+                      , Todo.Servers.TodoItem
+
+    -- Modules included in this library but not exported.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    default-language: Haskell2010
+    -- build-depends:    base ^>=4.14.0.0
+    build-depends:    base 
+                    , todo-core
+                    , todo-api
+                    , text
+                    , bytestring
+                    , aeson
+                    , mtl
+                    , transformers
+                    , transformers-either
+                    , http-types == 0.12.3
+                    , wai
+                    , wai-logger
+                    , servant-server
+                    , nest
+    hs-source-dirs: src
+    ghc-options:    -O2
+                    -Wall
+                    -Werror
+                    -Wincomplete-record-updates
+                    -Wincomplete-uni-patterns
+
+executable todo-server
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        base
+      , todo-server
+      , todo-postgres
+      , wai
+      , wai-logger
+      , warp
+      , mtl
+
+    hs-source-dirs:   app
+    default-language: Haskell2010

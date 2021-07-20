@@ -1,0 +1,16 @@
+cabal-version:      2.4
+name:               todo-api
+version:            0.1.0.0
+
+library
+    exposed-modules:
+        Todo.Api
+      , Todo.Api.Types.TodoItem
+    build-depends:
+        base ^>=4.14.1.0
+      , todo-core
+      , servant
+      , aeson
+      , text
+    hs-source-dirs:   src
+    default-language: Haskell2010

@@ -1,0 +1,16 @@
+cradle:
+  cabal:
+    - path: "./server/app/"
+      component: "todo-server:exe:todo-server"
+
+    - path: "./server/src/"
+      component: "lib:todo-server"
+
+    - path: "./core/src/"
+      component: "lib:todo-core"
+
+    - path: "./api/src/"
+      component: "lib:todo-api"
+
+    - path: "./postgres/src/"
+      component: "lib:todo-postgres"

@@ -1,0 +1,26 @@
+cabal-version:      2.4
+name:               todo-postgres
+version:            0.1.0.0
+
+library
+    exposed-modules:
+        Todo.Postgres.TodoItem.Service
+
+    -- Modules included in this library but not exported.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        base ^>=4.14.1.0
+      , todo-core
+      , mtl
+      , lens
+      , transformers
+      , transformers-either
+      , exceptions
+      , traction
+      , bytestring
+      , postgresql-simple
+    hs-source-dirs:   src
+    default-language: Haskell2010

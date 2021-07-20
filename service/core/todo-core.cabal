@@ -1,0 +1,14 @@
+cabal-version:      2.4
+name:               todo-core
+version:            0.1.0.0
+
+library
+    exposed-modules:  
+        Todo.Core.TodoItem.Types
+      , Todo.Core.TodoItem.Service
+    build-depends:    
+        base ^>=4.14.1.0
+      , text
+      , lens
+    hs-source-dirs:   src
+    default-language: Haskell2010
