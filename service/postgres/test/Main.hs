@@ -38,7 +38,8 @@ main = do
               "host=localhost dbname=todo_tests"
 
   -- initiating database connection
-  pool <- Traction.newRollbackPool cs
+  pool <- Traction.newPool cs
+  poolWithRollback <- Traction.newRollbackPool cs
 
   -- running database migrations
   putStrLn "running database migrations"
@@ -54,7 +55,7 @@ main = do
       pure ()
 
   -- running tests
-  defaultMain $ tests pool
+  defaultMain $ tests poolWithRollback
 
 
 runTraction
