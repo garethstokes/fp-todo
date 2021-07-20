@@ -5,6 +5,7 @@ version:            0.1.0.0
 library
     exposed-modules:
         Todo.Postgres.TodoItem.Service
+      , Todo.Postgres.TodoItem.Migration
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -24,3 +25,29 @@ library
       , postgresql-simple
     hs-source-dirs:   src
     default-language: Haskell2010
+
+test-suite todo-postgres-tests
+  default-language: 
+    Haskell2010
+
+  type:             
+    exitcode-stdio-1.0
+
+  hs-source-dirs:
+    test
+
+  build-depends:
+      base ^>=4.14.1.0
+    , todo-core
+    , todo-postgres
+    , transformers-either
+    , nest
+    , tasty
+    , traction
+    , postgresql-simple
+
+  main-is:
+    Main.hs
+
+  other-modules:
+    Todo.Postgres.Test
