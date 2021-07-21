@@ -57,20 +57,3 @@ main = do
 
   -- running tests
   defaultMain $ tests poolWithRollback
-
-runTraction ::
-  DbPool ->
-  Query ->
-  IO ()
-runTraction pool a = do
-  rr <-
-    runEitherT $
-      Traction.runDb pool $
-        Traction.execute_ $
-          a
-  case rr of
-    Left e -> do
-      hPrint stderr e
-      exitFailure
-    Right _ -> do
-      pure ()
