@@ -2,7 +2,7 @@ packages:
     server/todo-server.cabal
   , core/todo-core.cabal
   , api/todo-api.cabal
-  , postgres/todo-postgres.cabal
+  , core-postgres/todo-postgres.cabal
       
 with-compiler: ghc-8.10.4
 
