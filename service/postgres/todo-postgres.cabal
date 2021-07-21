@@ -43,11 +43,16 @@ test-suite todo-postgres-tests
     , transformers-either
     , nest
     , tasty
+    , tasty-hedgehog
+    , hedgehog
     , traction
     , postgresql-simple
+    , lens
+    , mmorph
 
   main-is:
     Main.hs
 
   other-modules:
-    Todo.Postgres.Test
+      Todo.Postgres.Gen
+    , Todo.Postgres.Statement.Test
