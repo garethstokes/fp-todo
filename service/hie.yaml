@@ -12,8 +12,8 @@ cradle:
     - path: "./api/src/"
       component: "lib:todo-api"
 
-    - path: "./postgres/src/"
-      component: "lib:todo-postgres"
+    - path: "./core-postgres/src/"
+      component: "todo-postgres:lib:todo-postgres"
 
-    - path: "./postgres/test/"
+    - path: "./core-postgres/test/"
       component: "todo-postgres:test:todo-postgres-tests"
