@@ -53,6 +53,15 @@ instance FromField TodoItem.Status where
           "Complete" -> pure TodoComplete
           _ -> pure TodoUnknown
 
+instance ToField TodoItem.Status where
+  toField tis = toField (todoStatus :: ByteString)
+   where
+    todoStatus =
+      case tis of
+        TodoPending -> "Pending"
+        TodoComplete -> "Complete"
+        _ -> "Unknown"
+
 instance FromRow TodoItem where
   fromRow = TodoItem <$> field <*> field <*> field
 
@@ -98,11 +107,12 @@ pgNew ::
   ) =>
   Traction.DbPool ->
   TodoItem.Name ->
+  TodoItem.Status ->
   m TodoItem
-pgNew pool n = do
+pgNew pool n s = do
   dbr <-
     liftIO . runEitherT $
-      Traction.runDb pool (statementForNew n)
+      Traction.runDb pool (statementForNew n s)
   case dbr of
     Left e ->
       throwing _DatabaseError . Traction.renderDbError $ e
@@ -112,8 +122,9 @@ pgNew pool n = do
 statementForNew ::
   Traction.MonadDb m =>
   TodoItem.Name ->
+  TodoItem.Status ->
   m TodoItem
-statementForNew n =
+statementForNew n s =
   Traction.mandatory
     [sql| 
       INSERT INTO todo
@@ -124,11 +135,11 @@ statementForNew n =
       VALUES
         ( md5(random()::text)
         , ?
-        , 'Pending'
+        , ?
         )
       RETURNING key, name, status;
     |]
-    (Traction.Only n)
+    (n, s)
 
 statementForFind ::
   Traction.MonadDb m =>

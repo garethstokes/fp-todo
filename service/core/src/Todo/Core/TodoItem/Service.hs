@@ -21,6 +21,6 @@ makeClassyPrisms ''TodoItemError
 
 data TodoItemService m = TodoItemService
   { findTodoItems :: m [TodoItem]
-  , newTodoItem :: TodoItem.Name -> m TodoItem
+  , newTodoItem :: TodoItem.Name -> TodoItem.Status -> m TodoItem
   , updateTodoItem :: TodoItem -> m TodoItem
   }
