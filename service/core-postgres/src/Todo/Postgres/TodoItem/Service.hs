@@ -81,6 +81,16 @@ postgresTodoItemService pool =
     , updateTodoItem = \_ -> throwing _NotImplemented "updateTodoItem"
     }
 
+execStatement p s = do
+  dbr <-
+    liftIO . runEitherT $
+      Traction.runDb p s
+  case dbr of
+    Left e ->
+      throwing _GeneralTodoItemError . Traction.renderDbError $ e
+    Right tix ->
+      pure tix
+
 pgFind ::
   ( MonadIO m
   , AsTodoItemError e
@@ -89,15 +99,7 @@ pgFind ::
   ) =>
   Traction.DbPool ->
   m [TodoItem]
-pgFind pool = do
-  dbr <-
-    liftIO . runEitherT $
-      Traction.runDb pool statementForFind
-  case dbr of
-    Left e ->
-      throwing _DatabaseError . Traction.renderDbError $ e
-    Right tix ->
-      pure tix
+pgFind pool = execStatement pool statementForFind
 
 pgNew ::
   ( MonadIO m
@@ -109,15 +111,7 @@ pgNew ::
   TodoItem.Name ->
   TodoItem.Status ->
   m TodoItem
-pgNew pool n s = do
-  dbr <-
-    liftIO . runEitherT $
-      Traction.runDb pool (statementForNew n s)
-  case dbr of
-    Left e ->
-      throwing _DatabaseError . Traction.renderDbError $ e
-    Right ti ->
-      pure ti
+pgNew pool n s = execStatement pool $ statementForNew n s
 
 statementForNew ::
   Traction.MonadDb m =>

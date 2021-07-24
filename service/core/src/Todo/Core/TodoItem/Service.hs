@@ -12,8 +12,8 @@ import Todo.Core.TodoItem.Types (TodoItem)
 import qualified Todo.Core.TodoItem.Types as TodoItem
 
 data TodoItemError
-  = DatabaseError Text
-  | TodoItemNotFound TodoItem.Id
+  = TodoItemNotFound TodoItem.Id
+  | GeneralTodoItemError Text
   | NotImplemented Text
   deriving (Show)
 
