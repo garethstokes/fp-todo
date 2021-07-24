@@ -17,3 +17,6 @@ cradle:
 
     - path: "./core-postgres/test/"
       component: "todo-postgres:test:todo-postgres-tests"
+
+    - path: "./core-memory/src/"
+      component: "todo-memory:lib:todo-memory"

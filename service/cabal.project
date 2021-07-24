@@ -3,6 +3,7 @@ packages:
   , core/todo-core.cabal
   , api/todo-api.cabal
   , core-postgres/todo-postgres.cabal
+  , core-memory/todo-memory.cabal
       
 with-compiler: ghc-8.10.4
 
