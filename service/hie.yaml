@@ -6,6 +6,9 @@ cradle:
     - path: "./server/src/"
       component: "lib:todo-server"
 
+    - path: "./server/test/"
+      component: "todo-server:test:todo-server-tests"
+
     - path: "./core/src/"
       component: "lib:todo-core"
 
