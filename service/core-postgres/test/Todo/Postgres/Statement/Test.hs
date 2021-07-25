@@ -12,7 +12,7 @@ import Todo.Core.TodoItem.Types (
   tiName,
   tiStatus,
  )
-import Todo.Postgres.Gen (genTodoName)
+import Todo.Postgres.Gen (genTodoName, genTodoStatus)
 import Todo.Postgres.TodoItem.Service (
   statementForFind,
   statementForNew,
@@ -45,10 +45,11 @@ newTodo p =
   testProperty "newTodo" $
     withTests 5 . property $ do
       n <- forAll genTodoName
-      ti <- runQuery p $ statementForNew n
+      s <- forAll genTodoStatus
+      ti <- runQuery p $ statementForNew n s
 
       view tiName ti === n
-      view tiStatus ti === TodoPending
+      view tiStatus ti === s
 
 findTodos :: DbPool -> TestTree
 findTodos p =
@@ -59,9 +60,9 @@ findTodos p =
       n3 <- forAll genTodoName
 
       tix <- runQuery p $ do
-        statementForNew n1
-        statementForNew n2
-        statementForNew n3
+        statementForNew n1 TodoPending
+        statementForNew n2 TodoPending
+        statementForNew n3 TodoPending
         statementForFind
 
       length tix === 3
