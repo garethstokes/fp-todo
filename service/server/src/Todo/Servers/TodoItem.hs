@@ -2,14 +2,13 @@ module Todo.Servers.TodoItem (
   server,
 ) where
 
-import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Trans.Either (
   EitherT,
   runEitherT,
  )
 
 import Servant
-import System.IO (hPrint, stderr)
+import System.IO (hPrint)
 
 import Todo.Api (
   TodoItemApi,

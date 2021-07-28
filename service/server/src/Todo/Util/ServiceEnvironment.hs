@@ -6,9 +6,7 @@ module Todo.Util.ServiceEnvironment (
   serviceEnvironment,
 ) where
 
-import Control.Monad.Except (ExceptT, withExceptT)
-import Control.Monad.IO.Class (MonadIO)
-import Data.ByteString (ByteString)
+import Control.Monad.Except (withExceptT)
 import Nest (NestError, numeric, runT, string, withDefault)
 
 newtype ServiceEnvironmentError

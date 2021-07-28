@@ -7,7 +7,6 @@ module Todo.Core.TodoItem.Service (
 ) where
 
 import Control.Lens.TH (makeClassyPrisms)
-import Data.Text (Text)
 import Todo.Core.TodoItem.Types (TodoItem)
 import qualified Todo.Core.TodoItem.Types as TodoItem
 

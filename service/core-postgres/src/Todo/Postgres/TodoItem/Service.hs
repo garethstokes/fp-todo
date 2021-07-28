@@ -11,9 +11,7 @@ module Todo.Postgres.TodoItem.Service (
 import Control.Monad.Catch (MonadCatch, MonadThrow)
 import Control.Monad.Error.Lens (throwing)
 import Control.Monad.Except (MonadError)
-import Control.Monad.IO.Class (MonadIO, liftIO)
 import Control.Monad.Trans.Either (runEitherT)
-import Data.ByteString (ByteString)
 
 import Database.PostgreSQL.Simple.FromField
 import Database.PostgreSQL.Simple.FromRow
