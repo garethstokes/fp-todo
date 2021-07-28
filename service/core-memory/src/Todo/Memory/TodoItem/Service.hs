@@ -8,9 +8,7 @@ module Todo.Memory.TodoItem.Service (
 import Control.Monad.Catch (MonadCatch, MonadThrow)
 import Control.Monad.Error.Lens (throwing)
 import Control.Monad.Except (MonadError)
-import Control.Monad.IO.Class (MonadIO, liftIO)
-import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
+import qualified Relude.Extra.Map as Map
 import Todo.Core.TodoItem.Service (
   AsTodoItemError (..),
   TodoItemService (..),
@@ -21,7 +19,7 @@ import qualified Todo.Core.TodoItem.Types as TodoItem
 type MemoryContext = Map TodoItem.Id TodoItem
 
 initMemoryTodoService :: Map TodoItem.Id TodoItem
-initMemoryTodoService = Map.empty
+initMemoryTodoService = mempty
 
 memoryTodoItemService ::
   ( MonadIO m

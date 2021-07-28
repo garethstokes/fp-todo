@@ -1,7 +1,5 @@
 module Main where
 
-import Control.Monad.Except (runExceptT)
-import Control.Monad.IO.Class (liftIO)
 import Network.Wai.Handler.Warp (
   defaultSettings,
   runSettings,
@@ -10,13 +8,9 @@ import Network.Wai.Handler.Warp (
   setPort,
  )
 import Network.Wai.Logger (withStdoutLogger)
-import System.Exit (exitFailure)
 import System.IO (
   BufferMode (NoBuffering),
   hPrint,
-  hSetBuffering,
-  stderr,
-  stdout,
  )
 
 import Todo.Postgres.TodoItem.Migration (
@@ -59,7 +53,7 @@ main = do
       exitFailure
     Right mx -> do
       print mx
-      pure ()
+      pass
 
   putStrLn $
     "todo-server: starting a web server on port "

@@ -8,7 +8,6 @@ module Todo.Api.Types.TodoItem (
 import Control.Lens (view)
 import Data.Aeson (ToJSON)
 import Data.Aeson.TH
-import Data.Text (Text)
 import Todo.Core.TodoItem.Types (TodoItem, tiId, tiName)
 import qualified Todo.Core.TodoItem.Types as TodoItem
 

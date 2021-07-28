@@ -10,11 +10,16 @@ library
 
     build-depends:
         base ^>=4.14.1.0
+      , relude
       , todo-core
-      , containers
       , lens
       , exceptions
       , mtl
+
+    mixins:
+        base hiding (Prelude)
+      , relude (Relude as Prelude)
+      , relude
 
     hs-source-dirs:
         src

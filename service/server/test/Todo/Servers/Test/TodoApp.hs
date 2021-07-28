@@ -2,7 +2,7 @@
 
 module Todo.Servers.Test.TodoApp where
 
-import Control.Lens
+import Control.Lens (view)
 import qualified Data.Map.Strict as Map
 import Data.Proxy
 import Network.HTTP.Client (defaultManagerSettings, newManager)

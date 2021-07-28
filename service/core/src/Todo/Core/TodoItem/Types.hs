@@ -6,7 +6,6 @@ module Todo.Core.TodoItem.Types where
 
 import Control.Lens.TH (makeLenses)
 import Data.Aeson (FromJSON, ToJSON)
-import Data.Text (Text)
 import GHC.Generics (Generic)
 
 newtype Id
